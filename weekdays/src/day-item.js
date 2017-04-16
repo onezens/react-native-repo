@@ -8,11 +8,19 @@ var Component = React.Component;
 //class
  class dayItem extends Component {
   render(){
-    return <Text>
-    Monday
+    return <Text style={styles.day}>
+      {this.props.day}
     </Text>
   }
 };
+
+//style
+const styles = StyleSheet.create({
+  day: {
+    color : 'cyan',
+    fontSize : 16
+  }
+});
 
 //export class
 module.exports = dayItem;
