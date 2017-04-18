@@ -14,7 +14,7 @@ class Tutorial extends Component {
   render() {
     return (
       <View style={{flex: 1, paddingTop: 20}}>
-        <ListView dataSource={this.state.dataSource} renderRow={(rowData)=><Text style={{fontSize:23, color: 'skyblue'}}>{rowData}</Text>}>
+        <ListView dataSource={this.state.dataSource} renderRow={(rowData)=><Text style={{fontSize:23, color: 'powderblue'}}>{rowData}</Text>}>
         </ListView>
       </View>
     )
