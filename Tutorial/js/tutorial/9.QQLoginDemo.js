@@ -15,107 +15,97 @@ import {
 var Dimensions = require('Dimensions');
 var {width,height} = Dimensions.get('window');
 
-class loginView extends Component {
-    render() {
+class LoginDemo extends Component {
+    render(){
         return (
             <View style={styles.container}>
-                {/*头像*/}
-                <Image source={require('./img/icon.png')} style={styles.iconStyle}/>
-                {/*账号和密码*/}
-                <TextInput placeholder={'请输入用户名'} style={styles.textInputStyle} />
-                <TextInput placeholder={'请输入密码'}  password={true}  style={styles.textInputStyle} />
-                {/*登录*/}
-                <View style={styles.loginBtnStyle}>
-                    <Text style={{color:'white'}}>登录</Text>
+                <Image style={styles.icon} source={require('../../img/icon.png')} />
+                <TextInput
+                    style={styles.input}
+                    placeholder='请输入账号'
+                    clearButtonMode='always'
+                />
+                <TextInput
+                    style={styles.input}
+                    placeholder='请输入密码'
+                    secureTextEntry={true}
+                    clearButtonMode='always'
+                />
+                <View style={styles.btnView}>
+                    <Text style={styles.btnTxt}>登录</Text>
                 </View>
-                {/*设置*/}
-                <View style={styles.settingStyle}>
+                <View style={styles.extraView}>
                     <Text>无法登录</Text>
                     <Text>新用户</Text>
                 </View>
-                {/*其他的登录方式*/}
-                <View style={styles.otherLoginStyle}>
-                    <Text>其他登录方式: </Text>
-                    <Image  source={require('./img/icon3.png')}  style={styles.otherImageStyle} />
-                    <Image  source={require('./img/icon7.png')}   style={styles.otherImageStyle} />
-                    <Image  source={require('./img/icon8.png')}   style={styles.otherImageStyle} />
+                <View style={styles.thirdLoginView}>
+                    <Text>其他登录方式：</Text>
+                    <Image style={styles.thirdLoginViewImg} source={{uri: 'icon3.png'}}/>
+                    <Image style={styles.thirdLoginViewImg} source={{uri: 'icon7.png'}}/>
+                    <Image style={styles.thirdLoginViewImg} source={{uri: 'icon8.png'}}/>
                 </View>
+
             </View>
-        );
+        )
     }
 }
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#dddddd',
-        // 设置侧轴的对齐方式
-        alignItems:'center'
+        alignItems: 'center',
+        backgroundColor: '#DDD'
     },
-
-    iconStyle:{
-        marginTop:50,
-        marginBottom:30,
-        width:80,
-        height:80,
-        borderRadius:40,
-        borderWidth:2,
-        borderColor:'white'
+    icon: {
+        marginTop: 64,
+        width: 80,
+        height: 80,
+        borderRadius: 40,
+        borderWidth: 1,
+        borderColor: '#fff',
+        marginBottom: 8
     },
-
-    textInputStyle:{
-        height:38,
-        backgroundColor:'white',
-        marginBottom:1,
-        // 内容居中
-        textAlign:'center'
+    input: {
+        width: width,
+        height: 36,
+        backgroundColor: '#fff',
+        marginBottom: 1,
+        fontSize: 16,
+        textAlign: 'center'
     },
-
-    loginBtnStyle:{
-        height:35,
-        width:width*0.9,
-        backgroundColor:'blue',
-        marginTop:30,
-        marginBottom:20,
-
-        justifyContent:'center',
-        alignItems:'center',
-
-        borderRadius:8
+    btnView: {
+        width: width-16,
+        backgroundColor: '#2c94f6',
+        height: 36,
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginTop: 8,
+        borderRadius: 4
     },
-
-    settingStyle:{
-        // 设置主轴的方向
-        flexDirection:'row',
-        // backgroundColor:'red',
-
-        // 主轴的对齐方式
-        width:width*0.9,
-        justifyContent:'space-between'
+    btnTxt: {
+        color: 'white'
     },
-
-    otherLoginStyle:{
-        // backgroundColor:'red',
-
-        // 设置主轴的方向
-        flexDirection:'row',
-
-        // 设置侧轴的对齐方式
-        alignItems:'center',
-
-        // 绝对定位
-        position:'absolute',
-        bottom:10,
-        left:20
+    extraView: {
+        width: width-16,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        marginTop: 8
     },
-
-    otherImageStyle:{
-        width:50,
-        height:50,
-        borderRadius:25,
-        marginLeft:8
+    thirdLoginView: {
+        position: 'absolute',
+        bottom: 20,
+        width: width-16,
+        flexDirection: 'row',
+        alignItems: 'center'
+    },
+    thirdLoginViewImg: {
+        width: 50,
+        height: 50,
+        marginLeft: 4,
+        borderRadius: 25
     }
 });
 
+
 // 输出类
-module.exports = loginView;
+module.exports = LoginDemo;
