@@ -8,6 +8,7 @@ const TouchableDemo = require('./js/tutorial/5.TouchableDemo');
 const ScrollViewDemo = require('./js/tutorial/6.ScrollViewDemo');
 const LunBoTuDemo = require('./js/tutorial/7.LunBoTuDemo');
 const ListViewDemo = require('./js/tutorial/8.ListViewDemo');
-const QQLoginDemo = require('./js/tutorial/9.QQLoginDemo.js');
+const QQLoginDemo = require('./js/tutorial/9.QQLoginDemo');
+const AppListDemo = require('./js/tutorial/10.AppListDemo');
 
-AppRegistry.registerComponent('Tutorial', ()=>QQLoginDemo);
+AppRegistry.registerComponent('Tutorial', ()=>AppListDemo);
