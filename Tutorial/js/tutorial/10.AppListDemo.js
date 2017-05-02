@@ -17,6 +17,11 @@ import {
 var Dimensions = require('Dimensions');
 var screenWidth = Dimensions.get('window').width;
 
+var column = 3;
+var itemWidth = 80;
+var itemMargin = (screenWidth - (itemWidth * column)) / 4;
+var bottomMargin = 10;
+
 // 导入json数据
 var shareData = require('../../src/json/shareData.json');
 
@@ -53,15 +58,21 @@ const styles = StyleSheet.create({
         marginTop: 20,
         flexDirection: 'row',
         flexWrap: 'wrap',
-        backgroundColor: 'skyblue'
+        // backgroundColor: 'skyblue',
     },
     cellView: {
-        width: 80,
-        backgroundColor: 'cyan'
+        width: itemWidth,
+        // backgroundColor: 'cyan',
+        marginLeft: itemMargin,
+        marginBottom: bottomMargin
     },
     cellImage: {
-        width: 80,
-        height: 80
+        width: itemWidth,
+        height: itemWidth
+    },
+    cellText: {
+        alignSelf: 'center',
+        marginTop: 4
     }
 });
 
