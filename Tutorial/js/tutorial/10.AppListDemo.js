@@ -42,13 +42,18 @@ var AppListDemo = React.createClass({
     },
     renderRow(data){
         return (
-            <TouchableOpacity>
+            <TouchableOpacity
+                onPress={()=>{this.didPressCell(data)}}
+            >
                 <View style={styles.cellView}>
                     <Image source={{uri: data.icon}} style={styles.cellImage}/>
                     <Text style={styles.cellText}>{data.title}</Text>
                 </View>
             </TouchableOpacity>
         )
+    },
+    didPressCell(data){
+        alert(data.title,);
     }
 });
 
