@@ -16,162 +16,125 @@ import {
 // 导入外部的json数据
 var Car = require('../../src/json/Car.json');
 
+
 var CarListDemo = React.createClass({
-    // 初始化函数
     getInitialState(){
-
-        var  getSectionData = (dataBlob, sectionID) => {
-            return dataBlob[sectionID];
+        var getSectionData = (data ,sectionId) => {
+            return data[sectionId];
+        };
+        var getRowData = (data, sectionId, rowId) => {
+            return data[sectionId + ':' + rowId];
         };
 
-        var  getRowData = (dataBlob, sectionID, rowID) => {
-            return dataBlob[sectionID + ':' + rowID];
-        };
-
-        return{
+        return {
             dataSource: new ListView.DataSource({
-                getSectionData: getSectionData, // 获取组中数据
-                getRowData: getRowData, // 获取行中的数据
+                getSectionData: getSectionData,
+                getRowData: getRowData,
                 rowHasChanged: (r1, r2) => r1 !== r2,
                 sectionHeaderHasChanged:(s1, s2) => s1 !== s2
             })
         }
-
     },
-
     render(){
-        return(
-            <ListView
-
-            />
-        );
-    },
-
-    // 复杂的操作:数据请求 或者 异步操作(定时器)
-    componentDidMount(){
-        // 调用json数据
-        this.loadDataFromJson();
-    },
-
-
-    loadDataFromJson(){
-        // 拿到json数据
-        var jsonData = Car.data;
-
-        // 定义一些变量
-        var dataBlob = {},
-            sectionIDs = [],
-            rowIDs = [],
-            cars = [];
-
-        // 遍历
-        for(var i=0; i<jsonData.length; i++){
-            // 1. 把组号放入sectionIDs数组中
-            sectionIDs.push(i);
-
-            // 2.把组中内容放入dataBlob对象中
-            dataBlob[i] = jsonData[i].title
-
-            // 3. 取出该组中所有的车
-            cars = jsonData[i].cars;
-            rowIDs[i] = [];
-
-            // 4. 遍历所有的车数组
-            for(var j=0; j<cars.length; j++){
-                // 把行号放入rowIDs
-                rowIDs[i].push(j);
-                // 把每一行中的内容放入dataBlob对象中
-                dataBlob[i+':'+j] = cars[j];
-            }
-        }
-
-        // 更新状态
-        this.setState({
-            dataSource: this.state.dataSource.cloneWithRowsAndSections(dataBlob,sectionIDs,rowIDs)
-        });
-
-    },
-
-    render(){
-        return(
-            <View style={styles.outerViewStyle}>
-                {/*头部*/}
-                <View style={styles.headerViewStyle}>
-                    <Text style={{color:'white', fontSize:25}}>SeeMyGo品牌</Text>
+        return (
+            <View style={styles.container}>
+                <View style={styles.nav}>
+                    <Text style={{fontSize: 20, color: '#fff'}}>CarListDemo</Text>
                 </View>
-                {/*ListView*/}
                 <ListView
                     dataSource={this.state.dataSource}
                     renderRow={this.renderRow}
                     renderSectionHeader={this.renderSectionHeader}
+                    style={styles.listView}
                 />
             </View>
-        );
+        )
     },
+    componentDidMount(){
+        this.loadDataFromJson()
+    },
+    loadDataFromJson(){
+        var jsonData = Car.data;
+        var data = {},
+            sectionId = [],
+            rowId = [];
+        for (var i=0,length=jsonData.length; i<length; i++){
+            var carObj = jsonData[i];
+            data[i] = carObj.title;
+            var cars = carObj.cars;
+            sectionId.push(i);
+            rowId[i] = [];
+            for (var j=0, carsLength=cars.length; j<cars.length; j++){
+                data[i+':'+j] = cars[j];
+                rowId[i].push(j);
+            }
+        }
 
-    // 每一行的数据
-    renderRow(rowData){
-        return(
-            <TouchableOpacity activeOpacity={0.5}>
-                <View style={styles.rowStyle}>
-                    <Image source={{uri: rowData.icon}} style={styles.rowImageStyle}/>
-                    <Text style={{marginLeft:5}}>{rowData.name}</Text>
+        console.log(JSON.stringify(data));
+
+        this.setState({
+            dataSource: this.state.dataSource.cloneWithRowsAndSections(data, sectionId, rowId)
+        });
+    },
+    renderRow(rowData, sectionId, rowId){
+        return (
+            <TouchableOpacity>
+                <View style={styles.cellContent}>
+                    <Image source={{uri: rowData.icon}} style={styles.cellImage}/>
+                    <Text style={styles.cellText}>{rowData.name}</Text>
                 </View>
             </TouchableOpacity>
-        );
+        )
     },
-
-    // 每一组中的数据
-    renderSectionHeader(sectionData, sectionID){
-        return(
-            <View style={styles.sectionHeaderViewStyle}>
-                <Text style={{marginLeft:5, color:'red'}}>{sectionData}</Text>
+    renderSectionHeader(sectionData) {
+        return (
+            <View style={styles.section}>
+                <Text>
+                    {sectionData}
+                </Text>
             </View>
-        );
+        )
     }
-
 
 
 });
 
-
-// 设置样式
-const  styles = StyleSheet.create({
-    outerViewStyle:{
-        //占满窗口
-        flex:1
+var styles = StyleSheet.create({
+    container: {
+        flex: 1
     },
-
-    headerViewStyle:{
-        height:64,
-        backgroundColor:'orange',
-
-        justifyContent:'center',
-        alignItems:'center'
+    nav: {
+        height: 64,
+        backgroundColor: 'orange',
+        justifyContent: 'center',
+        alignItems: 'center',
+        paddingTop: 10
     },
+    listView: {
 
-    rowStyle:{
-        // 设置主轴的方向
-        flexDirection:'row',
-        // 侧轴方向居中
-        alignItems:'center',
-        padding:10,
-
-        borderBottomColor:'#e8e8e8',
-        borderBottomWidth:0.5
     },
-
-    rowImageStyle:{
-        width:70,
-        height:70,
+    cellContent: {
+        flexDirection: 'row',
+        height: 80,
+        alignItems: 'center',
+        borderBottomColor: '#e8e8e8',
+        borderBottomWidth: 0.5
     },
-
-    sectionHeaderViewStyle:{
-        backgroundColor:'#e8e8e8',
-        height:25,
-
-        justifyContent:'center'
+    cellImage: {
+        width: 60,
+        height: 60,
+        marginLeft: 10
+    },
+    cellText :{
+        marginLeft: 10
+    },
+    section: {
+        height: 25,
+        backgroundColor: 'cyan',
+        justifyContent: 'center'
     }
+
 });
+
 
 module.exports = CarListDemo;

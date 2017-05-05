@@ -14,4 +14,4 @@ const CarListDemo = require('./js/tutorial/11.CarListDemo');
 const NavDemo = require('./js/tutorial/12.NavDemo');
 const NewsDemo = require('./js/project/1.NewsDemo/NewsDemo');
 
-AppRegistry.registerComponent('Tutorial', ()=>AppListDemo);
+AppRegistry.registerComponent('Tutorial', ()=>CarListDemo);
