@@ -11,101 +11,83 @@ import {
     TabBarIOS
 } from 'react-native';
 
-var NavDemo = React.createClass({
 
-    // 设置初始值
+var NavDemo = React.createClass({
     getInitialState(){
-        return{
-            // 默认被选中的tabBarItem
-            selectedTabBarItem: 'home'
+        return {
+            selectedTabbarItem: 'home'
         }
     },
-
-
     render() {
         return (
             <View style={styles.container}>
-                {/*头部*/}
-                <View style={styles.headerViewStyle}>
-                    <Text style={{color:'white'}}>Tab选项卡的切换</Text>
+                <View style={styles.topNav}>
+                    <Text style={{fontSize: 17}}>NavDemo</Text>
                 </View>
-
-                {/*选项卡*/}
-                <TabBarIOS
-                    barTintColor='orange'
-                    tintColor = 'purple'
-                >
-                    {/*第一块*/}
+                <TabBarIOS>
                     <TabBarIOS.Item
-                        systemIcon="downloads"
-                        title="张三"
-                        badge="3"
-                        selected={this.state.selectedTabBarItem == 'home'}
-                        onPress = {()=>{this.setState({selectedTabBarItem: 'home'})}}
+                        systemIcon= 'downloads'
+                        badge='3'
+                        title= 'home'
+                        selected= {this.state.selectedTabbarItem == 'home'}
+                        onPress={()=>{this.setState({selectedTabbarItem: 'home'})}}
                     >
-                        <View style={[styles.commonViewStyle,{backgroundColor:'red'}]}>
-                            <Text>首页</Text>
+                        <View style={styles.tabBarView}>
+                            <Text>第一页</Text>
                         </View>
                     </TabBarIOS.Item>
-
-                    {/*第二块*/}
                     <TabBarIOS.Item
-                        systemIcon="bookmarks"
-                        selected={this.state.selectedTabBarItem == 'second'}
-                        onPress = {()=>{this.setState({selectedTabBarItem: 'second'})}}
+                        systemIcon= 'bookmarks'
+                        selected= {this.state.selectedTabbarItem == 'bookmarks'}
+                        onPress={()=>{this.setState({selectedTabbarItem: 'bookmarks'})}}
                     >
-                        <View style={[styles.commonViewStyle,{backgroundColor:'green'}]}>
+                        <View style={styles.tabBarView}>
                             <Text>第二页</Text>
                         </View>
                     </TabBarIOS.Item>
-
-                    {/*第三块*/}
                     <TabBarIOS.Item
-                        systemIcon="downloads"
-                        selected={this.state.selectedTabBarItem == 'three'}
-                        onPress = {()=>{this.setState({selectedTabBarItem: 'three'})}}
+                        systemIcon= 'search'
+                        selected= {this.state.selectedTabbarItem == 'search'}
+                        onPress={()=>{this.setState({selectedTabbarItem: 'search'})}}
                     >
-                        <View style={[styles.commonViewStyle,{backgroundColor:'blue'}]}>
+                        <View style={styles.tabBarView}>
                             <Text>第三页</Text>
                         </View>
                     </TabBarIOS.Item>
-
-                    {/*第四块*/}
                     <TabBarIOS.Item
-                        systemIcon="search"
-                        selected={this.state.selectedTabBarItem == 'four'}
-                        onPress = {()=>{this.setState({selectedTabBarItem: 'four'})}}
+                        systemIcon= 'downloads'
+                        selected= {this.state.selectedTabbarItem == 'me'}
+                        onPress={()=>{this.setState({selectedTabbarItem: 'me'})}}
                     >
-                        <View style={[styles.commonViewStyle,{backgroundColor:'purple'}]}>
+                        <View style={styles.tabBarView}>
                             <Text>第四页</Text>
                         </View>
                     </TabBarIOS.Item>
                 </TabBarIOS>
             </View>
-        );
+        )
     }
 });
 
 const styles = StyleSheet.create({
     container: {
-        flex:1,
-        backgroundColor: '#F5FCFF',
+        flex: 1
     },
+    topNav: {
+        backgroundColor: 'cyan',
+        height: 64,
+        justifyContent: 'center',
+        alignItems: 'center',
+        paddingTop: 10,
 
-    headerViewStyle:{
-        height:64,
-        backgroundColor:'black',
-        justifyContent:'center',
-        alignItems:'center'
     },
-
-    commonViewStyle:{
-        flex:1,
-
-        justifyContent:'center',
-        alignItems:'center'
-
+    tabBarView: {
+        backgroundColor:'orange',
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center'
     }
+
 });
 
 module.exports = NavDemo;
