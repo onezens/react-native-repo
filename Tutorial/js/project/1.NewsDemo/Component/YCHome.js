@@ -14,6 +14,7 @@ import {
 
 const localData = require('../../../../src/json/LocalData.json');
 const AutoScrollView = require('./YCAutoScrollView');
+const NewsDetail = require('./YCNewsDetail');
 var {width} = require('Dimensions').get('window');
 
 const Home = React.createClass({
@@ -42,7 +43,7 @@ const Home = React.createClass({
     renderRow(data){
         return (
             <TouchableOpacity
-                onPress={()=>{this.jumpToNewsDetail(data.docid)}}
+                onPress={()=>{this.jumpToNewsDetail(data)}}
             >
                 <View style={styles.cellView}>
                     <Image source={{uri: data.imgsrc}} style={styles.cellImage} />
@@ -76,8 +77,12 @@ const Home = React.createClass({
             dataSource: this.state.dataSource.cloneWithRows(listData)
         });
     },
-    jumpToNewsDetail(newsId){
-
+    jumpToNewsDetail(rowData){
+        this.props.navigator.push({
+            component: NewsDetail,
+            title: rowData.title,
+            passProps:{rowData}
+        });
     }
 });
 
