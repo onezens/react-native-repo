@@ -154,47 +154,6 @@
       "upTimes": 0
     },
     {
-      "boardid": "photoview_bbs",
-      "clkNum": 0,
-      "digest": "",
-      "docid": "9IG74V5H00963VRO_00AP0001|118557",
-      "downTimes": 0,
-      "id": "",
-      "img": "http://img4.cache.netease.com/3g/2016/5/16/20160516084537226d8.jpg",
-      "imgType": 0,
-      "imgnewextra": [
-        {
-          "imgsrc": "http://img2.cache.netease.com/3g/2016/5/16/2016051608453929ad7.jpg"
-        },
-        {
-          "imgsrc": "http://img5.cache.netease.com/3g/2016/5/16/201605160845412dee8.jpg"
-        }
-      ],
-      "imgsrc": "http://img4.cache.netease.com/3g/2016/5/16/20160516084537226d8.jpg",
-      "interest": "A",
-      "lmodify": "2016-05-16 08:44:29",
-      "picCount": 0,
-      "program": "LTitleA",
-      "ptime": "2016-05-16 08:44:29",
-      "recReason": "网友热议",
-      "recSource": "图集",
-      "recType": 0,
-      "recprog": "LTitleA",
-      "replyCount": 24356,
-      "replyid": "",
-      "skipID": "00AP0001|118557",
-      "skipType": "photoset",
-      "source": "网易综合",
-      "tag": "photoset",
-      "template": "normal1",
-      "title": "男子进电影院女厕偷拍女生裙底",
-      "unlikeReason": [
-        "要闻/1",
-        "内容重复/6"
-      ],
-      "upTimes": 0
-    },
-    {
       "boardid": "news_shehui7_bbs",
       "clkNum": 0,
       "digest": "此前怀孕时意外流产，被识破后立刻跪倒在地哭诉求情。",
@@ -250,89 +209,6 @@
       "source": "澎湃新闻网",
       "template": "normal1",
       "title": "曝幼儿被组织为园长儿子婚礼跳舞助兴 教育局介入",
-      "unlikeReason": [
-        "社会/1",
-        "虚假新闻/6",
-        "很黄很暴力/6",
-        "内容重复/6"
-      ],
-      "upTimes": 0
-    },
-    {
-      "boardid": "photoview_bbs",
-      "clkNum": 0,
-      "digest": "",
-      "docid": "9IG74V5H00963VRO_4T8E0001|118428",
-      "downTimes": 0,
-      "id": "",
-      "img": "http://img3.cache.netease.com/3g/2016/5/14/20160514084225e1f68.jpg",
-      "imgType": 0,
-      "imgnewextra": [
-        {
-          "imgsrc": "http://img5.cache.netease.com/3g/2016/5/14/2016051408422711fee.jpg"
-        },
-        {
-          "imgsrc": "http://img4.cache.netease.com/3g/2016/5/14/20160514084229a5b5f.jpg"
-        }
-      ],
-      "imgsrc": "http://img3.cache.netease.com/3g/2016/5/14/20160514084225e1f68.jpg",
-      "interest": "军事",
-      "photosetID": "4T8E0001|118428",
-      "picCount": 0,
-      "program": "LTitleA",
-      "recSource": "军事",
-      "recType": -1,
-      "recprog": "LTitleA",
-      "replyCount": 5050,
-      "replyid": "",
-      "skipID": "4T8E0001|118428",
-      "skipType": "photoset",
-      "source": "飞扬军事",
-      "tag": "photoset",
-      "template": "normal1",
-      "title": "这涂装狰狞霸气！瞬间吓尿了",
-      "unlikeReason": [
-        "军事/1",
-        "反党反社会/6",
-        "标题党/6",
-        "来源:飞扬军事/4",
-        "内容重复/6"
-      ],
-      "upTimes": 0
-    },
-    {
-      "TAG": "正在直播",
-      "TAGS": "正在直播",
-      "clkNum": 0,
-      "digest": "花甲之年的格力董明珠，为何非要执意做手机呢？",
-      "docid": "79452",
-      "downTimes": 0,
-      "id": "79452",
-      "img": "http://img3.cache.netease.com/tech/2016/1/29/2016012915213194de8.jpg",
-      "imgType": 1,
-      "imgsrc": "http://img3.cache.netease.com/tech/2016/1/29/2016012915213194de8.jpg",
-      "interest": "A+",
-      "live_info": {
-        "end_time": "2016-05-16 17:00:00",
-        "roomId": 79452,
-        "start_time": "2016-05-16 15:00:00",
-        "type": 0,
-        "user_count": 1503,
-        "video": false
-      },
-      "lmodify": "2016-05-16 14:54:35",
-      "picCount": 0,
-      "program": "LTitleA",
-      "ptime": "2016-05-16 14:54:35",
-      "recSource": "独家",
-      "recType": -1,
-      "recprog": "LTitleA",
-      "replyCount": 0,
-      "replyid": "79452",
-      "skipID": "79452",
-      "skipType": "live",
-      "template": "normal1",
-      "title": "三点整:格力手机2又是个笑话?",
       "unlikeReason": [
         "社会/1",
         "虚假新闻/6",

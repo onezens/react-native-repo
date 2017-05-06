@@ -19,8 +19,6 @@ var Find = require('../Component/XMGFind');
 var Message = require('../Component/XMGMessage');
 var Mine = require('../Component/XMGMine');
 
-
-
 var Main = React.createClass({
 
     // 初始化方法
