@@ -89,7 +89,6 @@ const autoScrollView = React.createClass({
     onScrollEnd(e){
         var offsetX = e.nativeEvent.contentOffset.x;
         var index = Math.floor(offsetX / width);
-        console.log(index);
         this.setState({
             currentIndex: index,
             title: this.props.topAdsArr[index].title

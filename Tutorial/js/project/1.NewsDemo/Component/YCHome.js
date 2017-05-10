@@ -9,7 +9,8 @@ import {
     Text,
     ListView,
     Image,
-    TouchableOpacity
+    TouchableOpacity,
+    AlertIOS
 } from 'react-native'
 
 const localData = require('../../../../src/json/LocalData.json');
@@ -18,6 +19,12 @@ const NewsDetail = require('./YCNewsDetail');
 var {width} = require('Dimensions').get('window');
 
 const Home = React.createClass({
+    getDefaultProps(){
+        return {
+            url_api: "http://c.m.163.com/nc/article/headline/T1348647853363/0-20.html",
+            news_id: 'T1348647853363'
+        }
+    },
     getInitialState(){
       return {
           headerDataArr: [],
@@ -68,8 +75,23 @@ const Home = React.createClass({
 
     },
     getHomeData(){
+        fetch(this.props.url_api).
+            then((res)=>res.json()).
+            then((resData) => {
 
-        var listData = localData['T1348647853363'];
+            this.handlerNewsListData(resData[this.props.news_id]);
+
+        }).catch((err)=>{
+            alert('获取最新数据失败，已加载本地数据！');
+            console.log(err);
+            this.getLocalData();
+        });
+    },
+    getLocalData(){
+        var listData = localData[this.props.news_id];
+        this.handlerNewsListData(listData);
+    },
+    handlerNewsListData(listData){
         var headerData = listData[0]['ads'];
         listData.splice(0, 1)
         this.setState({
@@ -91,7 +113,7 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     cellView: {
-        height: 100,
+        height: 128,
         flexDirection: 'row',
         alignItems: 'center',
         backgroundColor: '#fff',

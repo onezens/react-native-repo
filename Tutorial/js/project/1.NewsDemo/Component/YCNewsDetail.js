@@ -4,101 +4,73 @@
 
 import React, { Component } from 'react';
 import {
-    AppRegistry,
     StyleSheet,
-    Text,
-    View,
     WebView
 } from 'react-native';
 
 // http://c.3g.163.com/nc/article/BMU8KHQD00964J4O/full.html
 
-var NewsDetail = React.createClass({
+const NewsDetail = React.createClass({
     getDefaultProps(){
-        return{
+      return {
 
-        }
+      }
     },
-
     getInitialState(){
-        return{
-            // 具体的数据
-            detailData: ''
-        }
+      return {
+          detailData: ''
+      }
     },
-
-    render() {
+    render(){
         return (
             <WebView
                 automaticallyAdjustContentInsets={true}
-                style={styles.webView}
+                style={styles.container}
                 source={{html: this.state.detailData, baseUrl: ''}}
                 javaScriptEnabled={true}
                 domStorageEnabled={true}
                 startInLoadingState={true}
                 scalesPageToFit={this.state.scalesPageToFit}
             />
-        );
+        )
     },
-
     componentDidMount(){
-        // 请求的路径
-        var url_api = 'http://c.3g.163.com/nc/article/' + this.props.rowData.docid + '/full.html';
-        // console.log(url_api);
+        this.getDetailData();
+    },
+    getDetailData(){
+        var docId = this.props.rowData['docid'];
+        var api_uri = 'http://c.3g.163.com/nc/article/' + docId + '/full.html';
+        fetch(api_uri).
+            then((res) => res.json()).
+            then((resData) => {
+            var detailData = resData[docId];
+            var bodyData = detailData.body;
+            var imgArr = detailData.img;
 
-        // 发送请求
-        fetch(url_api)
-            .then((response) => response.json())
-            .then((responseData)=>{
-                // 处理拿到的数据
-                var allData = responseData[this.props.rowData.docid];
-
-                console.log(allData);
-
-                // 拿到body
-                var bodyHtml = allData['body'];
-
-                // 拿到图片数据
-                if(allData['img'].length > 0){
-                    // 遍历
-                    for(var i=0; i<allData['img'].length; i++){
-                        // 取出单个图片对象
-                        var img = allData['img'][i];
-                        // 取出src
-                        var imgSrc = img['src'];
-                        var  imgHtml = '<img src="' + imgSrc + '" width="100%">';
-                        // 替换body中的图像占位符
-                        bodyHtml = bodyHtml.replace(img['ref'], imgHtml);
-                    }
-                }
-
-                // 更新状态机
-                this.setState({
-                    detailData:bodyHtml
-                });
-
-            })
-            .catch((error) => {
-                alert('请求数据失败');
-            })
-
-
+            for(var i=0; i<imgArr.length; i++){
+                var img = imgArr[i];
+                var imgSrc = '<img src="' + img.src + '" width="100%">';
+                console.log(imgSrc);
+                bodyData = bodyData.replace(img.ref, imgSrc);
+            }
+            console.log(bodyData);
+            this.setState({
+                detailData: bodyData
+            });
+        }).catch((err)=>{
+            alert('获取数据失败！');
+        });
     }
+
 });
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#F5FCFF',
-    },
-    welcome: {
-        fontSize: 20,
-        textAlign: 'center',
-        margin: 10,
+        flex: 1
     }
 });
+
+
 
 // 输出类
 module.exports = NewsDetail;
