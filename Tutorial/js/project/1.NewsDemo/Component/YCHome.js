@@ -17,6 +17,7 @@ const localData = require('../../../../src/json/LocalData.json');
 const AutoScrollView = require('./YCAutoScrollView');
 const NewsDetail = require('./YCNewsDetail');
 var {width} = require('Dimensions').get('window');
+const Main = require('./YCMain');
 
 const Home = React.createClass({
     getDefaultProps(){
@@ -100,6 +101,7 @@ const Home = React.createClass({
         });
     },
     jumpToNewsDetail(rowData){
+        // this.props.navigator.hideTabBar();
         this.props.navigator.push({
             component: NewsDetail,
             title: rowData.title,

@@ -13,96 +13,81 @@ const Find = require('./YCFind');
 const Message = require('./YCMesssage');
 const Mine = require('./YCMine');
 
+
+
 const MainTabBar = React.createClass({
+
     getInitialState(){
+
         return {
-            selectedItem: 'home'
+            selectedItem: 'home',
+            currentTab: 'HomePage',
+
         }
     },
+
     render(){
         return (
             <TabBarIOS
                 tintColor='orange'
             >
-                <TabBarIOS.Item
-                    badge = '2'
-                    title = '首页'
-                    icon = {{uri: 'tabbar_home'}}
-                    selected={this.state.selectedItem == 'home'}
-                    onPress={()=>{this.setState({selectedItem: 'home'})}}
-                    style={{
+                {this.renderTabBarItem('首页', 'tabbar_home', 'home', 1, <Home {...this.props}/> )}
+                {this.renderTabBarItem('首页', 'tabbar_discover', 'find', 0, <Find {...this.props}/>)}
+                {this.renderTabBarItem('首页', 'tabbar_message_center', 'message', 0, <Message {...this.props}/>)}
+                {this.renderTabBarItem('首页', 'tabbar_profile', 'mine', 0, <Mine {...this.props}/>)}
 
-                    }}
-                >
-                    <NavigatorIOS
-                        tintColor='orange'
-                        style={{flex:1}}
-                        initialRoute = {
-                            {
-                                component: Home,
-                                title: '首页',
-                                leftButtonIcon: {uri: 'navigationbar_friendattention'},
-                                rightButtonIcon: {uri: 'navigationbar_pop'}
-                            }
-
-                        }
-                    />
-                </TabBarIOS.Item>
-                <TabBarIOS.Item
-                    title = '发现'
-                    icon = {{uri: 'tabbar_discover'}}
-                    selected={this.state.selectedItem == 'find'}
-                    onPress={()=>{this.setState({selectedItem: 'find'})}}
-                >
-                    <NavigatorIOS
-                        tintColor='orange'
-                        style={{flex:1}}
-                        initialRoute = {
-                            {
-                                component: Find,
-                                title: '发现'
-                            }
-                        }
-                    />
-                </TabBarIOS.Item>
-                <TabBarIOS.Item
-                    title = '消息'
-                    icon = {{uri: 'tabbar_message_center'}}
-                    selected={this.state.selectedItem == 'message'}
-                    onPress={()=>{this.setState({selectedItem: 'message'})}}
-                >
-                    <NavigatorIOS
-                        tintColor='orange'
-                        style={{flex:1}}
-                        initialRoute = {
-                            {
-                                component: Message,
-                                title: '消息'
-                            }
-
-                        }
-                    />
-                </TabBarIOS.Item>
-                <TabBarIOS.Item
-                    title = '我的'
-                    icon = {{uri: 'tabbar_profile'}}
-                    selected={this.state.selectedItem == 'mine'}
-                    onPress={()=>{this.setState({selectedItem: 'mine'})}}
-                >
-                    <NavigatorIOS
-                        tintColor='orange'
-                        style={{flex:1}}
-                        initialRoute = {
-                            {
-                                component: Mine,
-                                title: '我的'
-                             }
-                        }
-                    />
-                </TabBarIOS.Item>
             </TabBarIOS>
+        )
+    },
+    renderTabBarItem(title, iconName, tabName, badge, component){
+       return (
+           <TabBarIOS.Item
+               badge = {badge}
+               title = {title}
+               icon = {{uri: iconName}}
+               selected={this.state.selectedItem == tabName}
+               onPress={()=>{this.setState({selectedItem: tabName})}}
+
+           >
+               {component}
+           </TabBarIOS.Item>
+       )
+    }
+});
+
+const Navigation = React.createClass({
+    render(){
+        return (
+            <NavigatorIOS
+                tintColor='orange'
+                style={{flex:1}}
+                initialRoute = {
+                    {
+                        component: MainTabBar,
+                        title: '我的'
+                    }
+                }
+            />
         )
     }
 });
 
-module.exports = MainTabBar;
+const styles = StyleSheet.create({
+    tabbar: {
+        height: 49,
+        alignItems:'center',
+        justifyContent: 'center',
+        backgroundColor: '#fff'
+    },
+    hide: {
+        transform: [
+            {translateX:375}
+        ]
+    },
+    tabStyle:{
+        padding: 4
+    }
+});
+
+
+module.exports = Navigation;
