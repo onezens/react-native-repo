@@ -15,4 +15,6 @@ const NavDemo = require('./js/tutorial/12.NavDemo');
 const NewsDemo = require('./js/project/1.NewsDemo/NewsDemo');
 const MeiTuanDemo = require('./js/project/2.MeiTuan/MeiTuanDemo');
 
-AppRegistry.registerComponent('Tutorial', ()=>NewsDemo);
+import Elm from './js/project/3.ELeMe/ElmDemo';
+
+AppRegistry.registerComponent('Tutorial', ()=>Elm);
